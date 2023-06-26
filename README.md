@@ -93,7 +93,6 @@ function App() {
   const [isOpen, setIsOpen] = useState(false);
 
   const handleOpenedModal = (e) => {
-    e.preventDefault();
     setIsOpen(true);
   }
 

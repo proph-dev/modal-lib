@@ -15,7 +15,7 @@ interface ModalProps {
     width?: string;
     height?: string;
     borderRadius?: string;
-    overlayOpacity?: number | boolean;
+    overlayOpacity?: number;
 }
 
 export const Modal = ({
