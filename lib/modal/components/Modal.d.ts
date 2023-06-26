@@ -3,14 +3,18 @@ import './modal.css';
 interface ModalProps {
     children: ReactNode;
     onClose: () => void;
-    showModal: boolean;
+    isOpen: boolean;
     modalClass?: string;
-    blockerClass?: string;
-    showClose?: boolean;
+    overlayClass?: string;
+    showCloseIcon?: boolean;
     closeText?: string;
     closeClass?: string;
     clickClose?: boolean;
     escapeClose?: boolean;
+    width?: string;
+    height?: string;
+    borderRadius?: string;
+    overlayOpacity?: number | boolean;
 }
-export declare const Modal: ({ children, onClose, showModal, modalClass, blockerClass, showClose, closeText, closeClass, clickClose, escapeClose }: ModalProps) => import("react/jsx-runtime").JSX.Element | null;
+export declare const Modal: ({ children, onClose, isOpen, modalClass, overlayClass, showCloseIcon, closeText, closeClass, clickClose, escapeClose, width, height, borderRadius, overlayOpacity }: ModalProps) => import("react/jsx-runtime").JSX.Element | null;
 export {};

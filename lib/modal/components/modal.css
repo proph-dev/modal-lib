@@ -1,29 +1,26 @@
-.modal {
-    position: fixed;
-    top: 0;
-    left: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, .6);
-  }
-  
-  .modal .modalContent {
-    position: relative;
-    padding: 1rem;
-    width: 500px;
-    border-radius: 15px;
-    background-color: #fff;
-  }
-  
-  .modal .modalContent button {
-    color: #000;
-    background-color: transparent;
-    border: none;
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    cursor: pointer;
-  }
+.overlayLibModal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+.overlayLibModal .libModalWrapper {
+  position: relative;
+  padding: 1rem;
+  background-color: #fff;
+}
+
+.overlayLibModal .libModalWrapper .closeButtonModal {
+  color: #000;
+  background-color: transparent;
+  border: none;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+}

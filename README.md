@@ -114,8 +114,8 @@ function App() {
         modalClass="modalContent"
         closeText='Fermer'
         closeClass="close"
-        width={400px}
-        borderRadius={20px}
+        width='400px'
+        borderRadius='20px'
         overlayOpacity={5}
         escapeClose
       >
