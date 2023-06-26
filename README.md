@@ -25,12 +25,12 @@ Import the modal with this line:
 ## Opened
 To open and close the modal, please add a state:
 ```javascript
-const [showModal, setShowModal] = useState(false);
+const [isOpen, setIsOpen] = useState(false);
 ```
-Add the "showModal" props, which takes the state:
+Add the "isOpen" props, which takes the state:
 ```javascript
 <Modal
-  showModal={ showModal }
+  isOpen={ isOpen }
 >
   ...
 </Modal>
@@ -44,14 +44,14 @@ The modal can also be closed from the inside, for example by pressing a "close" 
 Please add a handle:
 ```javascript
 const handleCloseModal = () => {
-  setShowModal(false);
+  setIsOpen(false);
 };
 ```
 Now add the "onClose" props calling your handle in the modal component, for example:
 ```javascript
 <Modal
   onClose={ handleCloseModal }
-  showModal={ showModal }
+  isOpen={ isOpen }
 >
   ...
 </Modal>
@@ -61,19 +61,27 @@ However, you'll need to add options to display the modal's closing cross or a te
 
 
 ## Options
-`escapeClose: true` : Allows the user to close the modal by pressing `ESC`
+`escapeClose: true` : Allows the user to close the modal by pressing `ESC` (default: false)
 
-`clickClose: true` : Allows the user to close the modal by clicking the overlay
+`clickClose: true` : Allows the user to close the modal by clicking the overlay (default: false)
 
 `closeText: 'Close'` : Text content of the button to close the modal
 
-`closeClass: ''` : Add custom classes to the close modal button
+`closeClass: 'customClose'` : Add custom classes to the close modal button
 
-`showClose: true` : Displays an icon (X) in the upper right-hand corner
+`showCloseIcon: true` : Displays an icon (X) in the upper right-hand corner (default: false)
 
 `modalClass: 'customModal'` : CSS class added to the element being displayed in the modal.
 
-`blockerClass: 'customOverlayModal'` : CSS class added to the overlay (blocker).
+`overlayClass: 'customOverlayModal'` : CSS class added to the overlay.
+
+`width: 500px` : Modifies modal width (default: 500px)
+
+`height: auto` : Modifies modal height (default: auto)
+
+`borderRadius: 10px` : Modifies the border radius of your modal (default: 15px)
+
+`overlayOpacity: 5` : Modifies the opacity of your modal overlay between 0 and 10 (default: 6)
 
 
 ## Example
@@ -82,15 +90,15 @@ import { useState } from 'react';
 import { Modal } from 'lib-modal/lib/modal';
 
 function App() {
-  const [showModal, setShowModal] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
 
   const handleOpenedModal = (e) => {
     e.preventDefault();
-    setShowModal(true);
+    setIsOpen(true);
   }
 
   const handleCloseModal = () => {
-    setShowModal(false);
+    setIsOpen(false);
   };
 
   return (
@@ -102,12 +110,16 @@ function App() {
 
       <Modal
         onClose={ handleCloseModal }
-        showModal={ showModal }
+        isOpen={ isOpen }
         modalClass="modalContent"
         closeText='Fermer'
         closeClass="close"
+        width={400px}
+        borderRadius={20px}
+        overlayOpacity={5}
         escapeClose
       >
+        <h1>The title of your modal</h1>
         <p>Add your modal content here</p>
       </Modal>
     </>

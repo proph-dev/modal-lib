@@ -4,18 +4,39 @@ import './modal.css';
 interface ModalProps {
     children: ReactNode;
     onClose: () => void;
-    showModal: boolean;
+    isOpen: boolean;
     modalClass?: string;
-    blockerClass?: string;
-    showClose?: boolean;
+    overlayClass?: string;
+    showCloseIcon?: boolean;
     closeText?: string;
     closeClass?: string;
     clickClose?: boolean;
     escapeClose?: boolean;
+    width?: string;
+    height?: string;
+    borderRadius?: string;
+    overlayOpacity?: number | boolean;
 }
 
-export const Modal = ({ children, onClose, showModal, modalClass, blockerClass, showClose, closeText, closeClass, clickClose, escapeClose }: ModalProps) => {
+export const Modal = ({
+    children,
+    onClose,
+    isOpen,
+    modalClass = '',
+    overlayClass = '',
+    showCloseIcon,
+    closeText = '',
+    closeClass = '',
+    clickClose,
+    escapeClose,
+    width = '500px',
+    height = 'auto',
+    borderRadius = '15px',
+    overlayOpacity = 6
+}: ModalProps) => {
     const modalRef = useRef<HTMLDivElement>(null);
+
+    const computedOverlayOpacity = typeof overlayOpacity === 'number' ? overlayOpacity / 10 : 0.6;
 
     useEffect(() => {
         const handleOutsideClick = (event: MouseEvent) => {
@@ -30,7 +51,7 @@ export const Modal = ({ children, onClose, showModal, modalClass, blockerClass, 
             }
         };
 
-        if (showModal) {
+        if (isOpen) {
             document.addEventListener("mousedown", handleOutsideClick);
             document.addEventListener("keydown", handleEscapeKey);
         }
@@ -40,23 +61,32 @@ export const Modal = ({ children, onClose, showModal, modalClass, blockerClass, 
             document.removeEventListener("keydown", handleEscapeKey);
         };
 
-    }, [clickClose, escapeClose, onClose, showModal]);
+    }, [clickClose, escapeClose, onClose, isOpen]);
 
-    if(!showModal) {
+    if(!isOpen) {
         return null;
     }
 
     return (
-        <div className={ blockerClass ? `${blockerClass} overlayLibModal` : 'overlayLibModal' }>
-            <div ref={modalRef} className={ modalClass ? `${modalClass} libModalWrapper` : 'libModalWrapper' }>
+        <div
+            className={ overlayClass ? `${overlayClass} overlayLibModal` : 'overlayLibModal' }
+            style={{ backgroundColor: `rgba(0, 0, 0, ${computedOverlayOpacity})` }}
+        >
+            <div
+                ref={modalRef}
+                className={ modalClass ? `${modalClass} libModalWrapper` : 'libModalWrapper' }
+                style={{
+                    width,
+                    height,
+                    borderRadius
+                }}
+            >
                 {children}
 
-                {showClose && (
-                    <button onClick={ onClose } className={ closeClass ? `${closeClass} closeButtonModal` : 'closeButtonModal' }>X</button>
-                )}
-
-                {closeText && !showClose && (
-                    <button onClick={ onClose } className={ closeClass ? `${closeClass} closeButtonModal` : 'closeButtonModal' }>{ closeText }</button>
+                {(showCloseIcon || closeText) && (
+                    <button onClick={ onClose } className={ closeClass ? `${closeClass} closeButtonModal` : 'closeButtonModal' }>
+                        {showCloseIcon ? 'X' : closeText}
+                    </button>
                 )}
             </div>
         </div>
