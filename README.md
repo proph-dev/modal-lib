@@ -5,9 +5,9 @@ A simple & lightweight method of displaying modal windows with React in TypeScri
  - [Installation](https://www.npmjs.com/package/lib-modal#installation)
  - [Import](https://www.npmjs.com/package/lib-modal#import)
  - [Opened](https://www.npmjs.com/package/lib-modal#opened)
- - [Close](https://www.npmjs.com/package/lib-modal#closed)
+ - [Closed](https://www.npmjs.com/package/lib-modal#closed)
  - [Options](https://www.npmjs.com/package/lib-modal#options)
- - [Examples](https://www.npmjs.com/package/lib-modal#examples)
+ - [Example](https://www.npmjs.com/package/lib-modal#examples)
 
 
 ## Installation
@@ -76,7 +76,7 @@ However, you'll need to add options to display the modal's closing cross or a te
 `blockerClass: 'customOverlayModal'` : CSS class added to the overlay (blocker).
 
 
-## Examples
+## Example
 ```javascript
 import { useState } from 'react';
 import { Modal } from 'lib-modal/lib/modal';
@@ -104,7 +104,6 @@ function App() {
         onClose={ handleCloseModal }
         showModal={ showModal }
         modalClass="modalContent"
-        showClose
         closeText='Fermer'
         closeClass="close"
         escapeClose
@@ -117,7 +116,7 @@ function App() {
 ```
 
 
-## Authors
+## Author
 - [Proph](https://github.com/proph-dev)
 
 
