@@ -47,16 +47,16 @@ export const Modal = ({ children, onClose, showModal, modalClass, blockerClass, 
     }
 
     return (
-        <div className={`${blockerClass} modal`}>
-            <div ref={modalRef} className={ modalClass }>
+        <div className={ blockerClass ? `${blockerClass} overlayLibModal` : 'overlayLibModal' }>
+            <div ref={modalRef} className={ modalClass ? `${modalClass} libModalWrapper` : 'libModalWrapper' }>
                 {children}
 
                 {showClose && (
-                    <button onClick={ onClose } className={ closeClass }>X</button>
+                    <button onClick={ onClose } className={ closeClass ? `${closeClass} closeButtonModal` : 'closeButtonModal' }>X</button>
                 )}
 
                 {closeText && !showClose && (
-                    <button onClick={ onClose } className={ closeClass }>{ closeText }</button>
+                    <button onClick={ onClose } className={ closeClass ? `${closeClass} closeButtonModal` : 'closeButtonModal' }>{ closeText }</button>
                 )}
             </div>
         </div>
